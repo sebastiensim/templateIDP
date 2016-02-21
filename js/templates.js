@@ -1,4 +1,4 @@
-function templateItem(d, a = false){
+function templateItem(d){
 	a = typeof a !== 'undefined' ? a : false;
 	return $.parseHTML(`<div class="item" data-itemid="` + d.Id + `">
 							<img class="min" src="uploaded/` + d.Image + `" alt="` + d.Title + `" />

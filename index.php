@@ -58,7 +58,7 @@
 	</section>
 	<footer>
 		<div class="container">
-			Done by sebastien :)
+			Done by G2T5 :)
 		</div>
 	</footer>
 	

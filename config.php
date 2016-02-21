@@ -3,9 +3,9 @@
 	require_once("func.php");
 	
 	$conf['dbhost'] = 'localhost';
-	$conf['dbname'] = 'sebastien';
+	$conf['dbname'] = 'template';
 	$conf['dbuser'] = 'root';
-	$conf['dbpass'] = '';
+	$conf['dbpass'] = 'root';
 	define('SALT', 'ZML%@#KASOBCX#');
 
 	try {
