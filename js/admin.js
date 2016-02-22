@@ -133,9 +133,9 @@ function addItem(elem){
 }
 
 function deleteItem(elem){
-	console.log(elem);
 	var parent = elem.parents('.item_container');
 	$.post('api/admin/deleteItem.php', {id: parent.data('itemid')}, function(data){
+		console.log(data);
 		if (data.state == 0){
 			var grandparent = parent.closest('.item_list');
 			parent.fadeOut(500, function(){

@@ -8,7 +8,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>TemPlate</title>
+	<title>Sebsim :)</title>
 	<link rel="stylesheet" type="text/css" href="css/includes.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -19,7 +19,7 @@
 				<div class="top_right">
 					<a href="api/logout.php" class="btn btn-warning" data-act="logout"><span class="glyphicon glyphicon-remove"></span> Logout</a>
 				</div>
-				<h3>TemPlate</h3>
+				<h3>Sebsim</h3>
 				<div id="search_container">
 					<form autocomplete="off">
 						<div class="input-group">
@@ -60,7 +60,7 @@
 	</section>
 	<footer>
 		<div class="container">
-			Done by G2T5 :)
+			Done by sebastien :)
 		</div>
 	</footer>
 	

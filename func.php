@@ -17,7 +17,7 @@
 		global $db;
 		$user = 0;
 		if (isset($_SESSION['uid']) && isset($_SESSION['hash'])){
-			$hash = hash('SHA512', (SALT . $_SESSION['uid'] . $_SERVER['REMOTE_ADDR']));
+			$hash = hash('SHA512', (SALT . $_SESSION['uid']));
 			if ($_SESSION['hash'] == $hash){
 				$stmt = $db->prepare('SELECT * FROM `users` WHERE `id`=?');
 				$stmt->execute(array($_SESSION['uid']));

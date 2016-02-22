@@ -7,7 +7,7 @@
 			if ($stmt->rowCount() > 0){
 				$user = $stmt->fetch(PDO::FETCH_OBJ);
 				$_SESSION['uid'] = $user->Id;
-				$_SESSION['hash'] = hash('SHA512', (SALT . $user->Id . $_SERVER['REMOTE_ADDR']));
+				$_SESSION['hash'] = hash('SHA512', (SALT . $user->Id));
 				exit(json_encode(array("state" => 0)));
 			} else {
 				exit(json_encode(array("state" => 2)));
