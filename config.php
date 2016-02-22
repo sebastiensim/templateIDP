@@ -2,18 +2,18 @@
 	session_start();
 	require_once("func.php");
 	
-	$conf['dbhost'] = 'localhost';
-	$conf['dbname'] = 'sebastien';
-	$conf['dbuser'] = 'root';
-	$conf['dbpass'] = '';
+	$conf['dbhost'] = 'mysql:host=us-cdbr-iron-east-03.cleardb.net';
+	$conf['dbname'] = 'heroku_8454500b6fe7b6a';
+	$conf['dbuser'] = 'bc2011e822a0fa';
+	$conf['dbpass'] = 'ee3e2601';
 	define('SALT', 'ZML%@#KASOBCX#');
-	define('CUR_DIR', realpath(dirname(__FILE__)));
-
-	try {
-		$db = new PDO('mysql:host=' . $conf['dbhost'] . ';dbname=' . $conf['dbname'], $conf['dbuser'], $conf['dbpass']);
-	} catch (PDOException $e){
-		echo "Error connecting to database:" . $e;
-	};
+ 	define('CUR_DIR', realpath(dirname(__FILE__)));
+  
+  	try {
+ 		$db = new PDO('mysql:host=us-cdbr-iron-east-03.cleardb.net;dbname=heroku_8454500b6fe7b6a', $conf['dbuser'], $conf['dbpass']);
+  	} catch (PDOException $e){
+  		echo "Error connecting to database:" . $e;
+  	};
 	
 	$user = checkLogin();
 ?>
