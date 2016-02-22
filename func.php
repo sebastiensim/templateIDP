@@ -1,47 +1,21 @@
 <?php
 require 'vendor/autoload.php';
 use MemCachier\MemcacheSASL;
-// // create a new persistent client
-// $m = new Memcached("memcached_pool");
-// $m->setOption(Memcached::OPT_BINARY_PROTOCOL, TRUE);
 
-// // some nicer default options
-// $m->setOption(Memcached::OPT_NO_BLOCK, TRUE);
-// $m->setOption(Memcached::OPT_AUTO_EJECT_HOSTS, TRUE);
-// $m->setOption(Memcached::OPT_CONNECT_TIMEOUT, 2000);
-// $m->setOption(Memcached::OPT_POLL_TIMEOUT, 2000);
-// $m->setOption(Memcached::OPT_RETRY_TIMEOUT, 2);
+error_reporting(E_ALL & ~E_NOTICE); 
 
-// // setup authentication
-// $m->setSaslAuthData( getenv("MEMCACHIER_USERNAME")
-//                    , getenv("MEMCACHIER_PASSWORD") );
+$mc = new Memcached(); 
+$mc->addServer("us-cdbr-iron-east-03.cleardb.net", 11211); 
 
-// // We use a consistent connection to memcached, so only add in the
-// // servers first time through otherwise we end up duplicating our
-// // connections to the server.
-// if (!$m->getServerList()) {
-//     // parse server config
-//     $servers = explode(",", getenv("MEMCACHIER_SERVERS"));
-//     foreach ($servers as $s) {
-//         $parts = explode(":", $s);
-//         $m->addServer($parts[0], $parts[1]);
-//     }
-// }
-// Create client
-// $m = new MemcacheSASL();
-// $servers = explode(",", getenv("MEMCACHIER_SERVERS"));
-// foreach ($servers as $s) {
-//     $parts = explode(":", $s);
-//     $m->addServer($parts[0], $parts[1]);
-// }
+$mc->set("foo", "Hello!"); 
+$mc->set("bar", "Memcached..."); 
 
-// // Setup authentication
-// $m->setSaslAuthData( getenv("MEMCACHIER_USERNAME")
-//                    , getenv("MEMCACHIER_PASSWORD") );
+$arr = array( 
+    $mc->get("foo"), 
+    $mc->get("bar")
+); 
 
-// // Test client
-// $m->add("foo", "bar");
-// echo $m->get("foo");
+session.save_path="PERSISTENT=myapp_session ${MEMCACHIER_SERVERS}"
 
 	function validUsername($username){
 		if (strlen($username) < 3 || strlen($username) > 15)
