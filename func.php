@@ -26,10 +26,6 @@ if (!$m->getServerList()) {
         $m->addServer($parts[0], $parts[1]);
     }
 }
-
-session_start();
-$_SESSION['test'] = 42;
-
 	function validUsername($username){
 		if (strlen($username) < 3 || strlen($username) > 15)
 			return false;
