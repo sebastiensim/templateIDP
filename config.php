@@ -2,10 +2,12 @@
 	session_start();
 	require_once("func.php");
 	
+	$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
 	$conf['dbhost'] = 'localhost';
 	$conf['dbname'] = 'sebastien';
 	$conf['dbuser'] = 'root';
-	$conf['dbpass'] = '';
+	$conf['dbpass'] = 'root';
 	define('SALT', 'ZML%@#KASOBCX#');
 	define('CUR_DIR', realpath(dirname(__FILE__)));
 
