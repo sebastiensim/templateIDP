@@ -1,22 +1,4 @@
 <?php
-require 'vendor/autoload.php';
-use MemCachier\MemcacheSASL;
-
-error_reporting(E_ALL & ~E_NOTICE); 
-
-$mc = new Memcached(); 
-$mc->addServer("us-cdbr-iron-east-03.cleardb.net", 11211); 
-
-$mc->set("foo", "Hello!"); 
-$mc->set("bar", "Memcached..."); 
-
-$arr = array( 
-    $mc->get("foo"), 
-    $mc->get("bar")
-); 
-
-session.save_path="PERSISTENT=myapp_session ${MEMCACHIER_SERVERS}"
-
 	function validUsername($username){
 		if (strlen($username) < 3 || strlen($username) > 15)
 			return false;
