@@ -4,10 +4,10 @@
 	
 	$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-	$conf['dbhost'] = 'localhost';
-	$conf['dbname'] = 'sebastien';
-	$conf['dbuser'] = 'root';
-	$conf['dbpass'] = 'root';
+	$conf['dbhost'] = 'us-cdbr-iron-east-03.cleardb.net';
+	$conf['dbname'] = 'heroku_8454500b6fe7b6a';
+	$conf['dbuser'] = 'bc2011e822a0fa';
+	$conf['dbpass'] = 'ee3e2601';
 	define('SALT', 'ZML%@#KASOBCX#');
 	define('CUR_DIR', realpath(dirname(__FILE__)));
 
