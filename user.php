@@ -17,62 +17,43 @@
 		<div class="jumbotron">
 			<div class="container">
 				<div class="top_right">
-					<a href="api/logout.php" class="btn btn-primary" data-act="logout">Logout</a>
+					<a href="api/logout.php" class="btn btn-warning" data-act="logout"><span class="glyphicon glyphicon-remove"></span> Logout</a>
 				</div>
 				<h3>Sebsim</h3>
-				<div class="user_content">
-					<h2>Explore templates</h2>
-					<a id="searchOpen" href="#searchModal" class="btn-group search_imit" role="group" aria-label="...">
-						<div class="placeholder">Search for... </div>
-						<span class="btn btn-primary" name="send"><span class="glyphicon glyphicon-search"></span></span>
-					</a>
-					<p><small>Check out our large collection of themes.</small></p>
+				<div id="search_container">
+					<form autocomplete="off">
+						<div class="input-group">
+							<input type="text" class="form-control" name="q" placeholder="Search for...">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" name="send" type="button"><span class="glyphicon glyphicon-search"></span></button>
+							</span>
+						</div>
+					</form>
+					<div class="search_placeholder"></div>
+					<a id="requestOpen" href="#requestModal">Not found what you are looking for? Request it!</a>
+					<div class="alerts text-center"></div>
+					<div class="item_list"></div>
 				</div>
 			</div>
 		</div>
 	</header>
 	
-	<section class="items_list">
+	<section class="random_items">
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#packages" aria-controls="packages" role="tab" data-toggle="tab">Packages</a></li>
 			<li role="presentation"><a href="#slides" aria-controls="slides" role="tab" data-toggle="tab">Slides</a></li>
 			<li role="presentation"><a href="#icons" aria-controls="icons" role="tab" data-toggle="tab">Icons</a></li>
 		</ul>
-		<div class="container-fluid text-center">
+		<div class="container text-center">
 			<div class="tab-content">
-				<div role="tabpanel" class="tab-pane fade in active" id="packages">
-					<div class="item_list">
-						<div class="item">
-							<img class="min" src="uploaded/min-1.jpg" alt="title" />
-							<div class="hover">
-								<div class="details">
-									<div class="text">
-										<div class="inner">
-											<h3>Product title</h3>
-											<p>Short descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort descriptionShort description</p>
-										</div>
-									</div>
-									<div class="stats clearfix">
-										<span class="pull-left"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> 999.99</span>
-										<span class="pull-right">Authoo <span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<button class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span> Load more</button>
+				<div role="tabpanel" class="tab-pane fade in active" id="packages" data-cid="1">
+					<div class="item_list"></div>
 				</div>
-				<div role="tabpanel" class="tab-pane fade" id="slides">
-					<div class="item_list">
-						No slides to show.
-					</div>
-					<button class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span> Load more</button>
+				<div role="tabpanel" class="tab-pane fade" id="slides" data-cid="2">
+					<div class="item_list"></div>
 				</div>
-				<div role="tabpanel" class="tab-pane fade" id="icons">
-					<div class="item_list">
-						No icons to show.
-					</div>
-					<button class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span> Load more</button>
+				<div role="tabpanel" class="tab-pane fade" id="icons" data-cid="3">
+					<div class="item_list"></div>
 				</div>
 			</div>
 		</div>
@@ -84,67 +65,19 @@
 	</footer>
 	
 	<!-- Modals -->
-	<div id="searchModal" class="modal">
+	<div id="requestModal" class="modal">
 		<div class="text-center"> 
-			<img class="close-searchModal close_button" src="img/closebt.svg" alt="X" />
+			<img class="close-requestModal close_button" src="img/closebt.svg" alt="X" />
 		</div>
 		<div class="modal-content">
-			<div class="container-fluid">
-				<form class="search_form" autocomplete="off">
-					<div class="input-group">
-						<input type="text" class="form-control" name="q" placeholder="Search for...">
-						<span class="input-group-btn">
-							<button class="btn btn-primary" name="send" type="button"><span class="glyphicon glyphicon-search"></span></button>
-						</span>
-					</div>
-				</form>
-				<div class="alerts text-center"></div>
-				<div class="item_list">
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="loginModal" class="modal">
-		<div class="text-center"> 
-			<img class="close-loginModal close_button" src="img/closebt.svg" alt="X" />
-		</div>
-		<div class="modal-content">
-			<div class="container-fluid text-center">
+			<div class="container text-center">
 				<div class="alerts"></div>
-				<form class="login_form" autocomplete="off">
+				<form autocomplete="off">
 					<div class="form-group">
-						<input type="text" class="form-control" name="login" placeholder="Username" required>
+						<textarea name="request" class="form-control" placeholder="Specify your request here..." required></textarea>
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" name="password" placeholder="Password" required>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary" name="submit">Sign In</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
-	<div id="registerModal" class="modal">
-		<div class="text-center"> 
-			<img class="close-registerModal close_button" src="img/closebt.svg" alt="X" />
-		</div>
-		<div class="modal-content">
-			<div class="container-fluid text-center">
-				<div class="alerts"></div>
-				<form class="register_form" autocomplete="off">
-					<div class="form-group">
-						<input type="text" class="form-control" name="login" placeholder="Username" required>
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" name="password" placeholder="Password" required>
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" name="password2" placeholder="Repeat Password" required>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary" name="submit">Sign Up</button>
+						<button type="submit" class="btn btn-info" name="submit"><span class="glyphicon glyphicon-ok"></span> Submit</button>
 					</div>
 				</form>
 			</div>
@@ -153,6 +86,6 @@
 	
 	<script src="js/libs.js"></script>
 	<script src="js/templates.js"></script>
-	<script src="js/loggedout.js"></script>
+	<script src="js/loggedin.js"></script>
 </body>
 </html>

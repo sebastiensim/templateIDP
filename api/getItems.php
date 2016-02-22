@@ -1,12 +1,10 @@
 <?php
 	require_once("../config.php");
-	$query = '';
+	$rows = array();
 	for ($i=1; $i<=3; $i++){
-		$query .= "SELECT * FROM `items` WHERE `Category` = " . $i . " LIMIT 10 UNION ";
+		$stmt = $db->prepare("SELECT * FROM `items` WHERE `Category` = ? ORDER BY RAND() LIMIT 12");
+		$stmt->execute(array($i));
+		$rows = array_merge($rows, $stmt->fetchAll(PDO::FETCH_ASSOC));
 	}
-	$query = rtrim($query, "UNION ");
-	$stmt = $db->prepare($query);
-	$stmt->execute();
-	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	echo json_encode($rows);
 ?>

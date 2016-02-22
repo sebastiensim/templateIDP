@@ -1,6 +1,6 @@
 <?php
-	if (isset($_POST['submit'])){
-		require_once("../config.php");
+	require_once("../config.php");
+	if (isset($_POST['submit']) && !LOGGED_IN){
 		if (!empty($_POST['login']) && !empty($_POST['password'])){
 			$stmt = $db->prepare('SELECT `Id`, `Password` FROM `users` WHERE `Username` = ? AND `Password` = ?');
 			$stmt->execute(array($_POST['login'], hash('SHA256', (SALT . $_POST['password']))));

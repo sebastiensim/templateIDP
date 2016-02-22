@@ -3,10 +3,11 @@
 	require_once("func.php");
 	
 	$conf['dbhost'] = 'localhost';
-	$conf['dbname'] = 'template';
+	$conf['dbname'] = 'sebastien';
 	$conf['dbuser'] = 'root';
-	$conf['dbpass'] = 'root';
+	$conf['dbpass'] = '';
 	define('SALT', 'ZML%@#KASOBCX#');
+	define('CUR_DIR', realpath(dirname(__FILE__)));
 
 	try {
 		$db = new PDO('mysql:host=' . $conf['dbhost'] . ';dbname=' . $conf['dbname'], $conf['dbuser'], $conf['dbpass']);

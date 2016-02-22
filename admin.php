@@ -17,41 +17,44 @@
 		<div class="jumbotron">
 			<div class="container">
 				<div class="top_right">
+					<a id="requestListOpen" href="#requestListModal" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span> Requests</a>
 					<a id="addItemOpen" href="#addItemModal" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add item</a>
 					<a href="api/logout.php" class="btn btn-warning" data-act="logout"><span class="glyphicon glyphicon-remove"></span> Logout</a>
 				</div>
 				<h3>Sebsim</h3>
-				<div class="user_content">
-					<h2>Welcome to admin panel</h2>
-					<a id="searchOpen" href="#searchModal" class="btn-group search_imit" role="group">
-						<div class="placeholder">Search for... </div>
-						<span class="btn btn-primary" name="send"><span class="glyphicon glyphicon-search"></span></span>
-					</a>
-					<p><small>Search for product or pick one from lists below.</small></p>
+				<div id="search_container">
+					<form autocomplete="off">
+						<div class="input-group">
+							<input type="text" class="form-control" name="q" placeholder="Search for...">
+							<span class="input-group-btn">
+								<button class="btn btn-primary" name="send" type="button"><span class="glyphicon glyphicon-search"></span></button>
+							</span>
+						</div>
+					</form>
+					<div class="search_placeholder"></div>
+					<div class="alerts text-center"></div>
+					<div class="item_list"></div>
 				</div>
 			</div>
 		</div>
 	</header>
 	
-	<section class="items_list">
+	<section class="random_items">
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#packages" aria-controls="packages" role="tab" data-toggle="tab">Packages</a></li>
 			<li role="presentation"><a href="#slides" aria-controls="slides" role="tab" data-toggle="tab">Slides</a></li>
 			<li role="presentation"><a href="#icons" aria-controls="icons" role="tab" data-toggle="tab">Icons</a></li>
 		</ul>
-		<div class="container-fluid text-center">
+		<div class="container text-center">
 			<div class="tab-content">
 				<div role="tabpanel" class="tab-pane fade in active" id="packages" data-cid="1">
 					<div class="item_list"></div>
-					<button class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span> Load more</button>
 				</div>
 				<div role="tabpanel" class="tab-pane fade" id="slides" data-cid="2">
 					<div class="item_list"></div>
-					<button class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span> Load more</button>
 				</div>
 				<div role="tabpanel" class="tab-pane fade" id="icons" data-cid="3">
 					<div class="item_list"></div>
-					<button class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span> Load more</button>
 				</div>
 			</div>
 		</div>
@@ -63,34 +66,14 @@
 	</footer>
 	
 	<!-- Modals -->
-	<div id="searchModal" class="modal">
-		<div class="text-center"> 
-			<img class="close-searchModal close_button" src="img/closebt.svg" alt="X" />
-		</div>
-		<div class="modal-content">
-			<div class="container-fluid">
-				<form class="search_form" autocomplete="off">
-					<div class="input-group">
-						<input type="text" class="form-control" name="q" placeholder="Search for...">
-						<span class="input-group-btn">
-							<button class="btn btn-primary" name="send" type="button"><span class="glyphicon glyphicon-search"></span></button>
-						</span>
-					</div>
-				</form>
-				<div class="alerts text-center"></div>
-				<div class="item_list"></div>
-			</div>
-		</div>
-	</div>
-	
 	<div id="addItemModal" class="modal">
 		<div class="text-center"> 
 			<img class="close-addItemModal close_button" src="img/closebt.svg" alt="X" />
 		</div>
 		<div class="modal-content">
-			<div class="container-fluid">
+			<div class="container">
 				<div class="alerts text-center"></div>
-				<form autocomplete="off">
+				<form action="api/admin/addItem.php" autocomplete="off" method="POST" enctype='multipart/form-data'>
 					<div class="form-group">
 						<input type="text" class="form-control" name="title" placeholder="Title" required>
 					</div>
@@ -101,7 +84,10 @@
 						<input type="number" class="form-control" name="cost" placeholder="Cost" step="0.01" min="0" max="999.99" required>
 					</div>
 					<div class="form-group">
-						<textarea class="form-control" name="description" placeholder="Description"></textarea>
+						<textarea class="form-control" name="description" placeholder="Description" required></textarea>
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control" name="tags" placeholder="Tags" required>
 					</div>
 					<div class="form-group">
 						<label>Miniature Image: </label>
@@ -126,6 +112,19 @@
 						<button type="reset" class="btn btn-warning" name="submit"><span class="glyphicon glyphicon-refresh"></span> Reset form</button>
 					</div>
 				</form>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modals -->
+	<div id="requestListModal" class="modal">
+		<div class="text-center"> 
+			<img class="close-requestListModal close_button" src="img/closebt.svg" alt="X" />
+		</div>
+		<div class="modal-content">
+			<div class="container text-center">
+				<div class="alerts"></div>
+				<div class="request_list"></div>
 			</div>
 		</div>
 	</div>

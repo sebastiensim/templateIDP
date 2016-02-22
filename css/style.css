@@ -3,34 +3,56 @@ body{background: #ecf0f1; overflow-y: scroll;}
 .hidden_content{display: none;}
 
 /* HEADER / FOOTER */
-header{background: url('../img/bg-header.jpg') no-repeat center / cover; color: #ecf0f1;}
+header{background: url('../img/bg-header.jpg') no-repeat center / cover; min-height: 100vh; color: #ecf0f1; position: relative;}
 header .jumbotron{background: none; padding: 0; margin: 0;}
+header .jumbotron p{font-size: inherit;}
+header .jumbotron a{color: inherit;}
 header .top_right{position: absolute; top: 10px; right: 10px;}
-header .user_content{margin: 10vh 0 20vh 0;}
-header .user_content p{margin-top: 10px; display: block;}
-header .user_content .search_imit .placeholder{background: #fff; color: #aaa; height: 34px; width: 280px; float: left; border: 1px solid grey; text-align: left; padding: 6px 10px; border-top-left-radius: 4px; border-bottom-left-radius: 4px; -moz-border-top-left-radius: 4px; -moz-border-bottom-left-radius: 4px; -webkit-border-top-left-radius: 4px; -webkit-border-bottom-left-radius: 4px;}
-
+header #search_container form, header #search_container .alerts{width: 100%; max-width: 350px;}
+header #search_container form{position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); -moz-transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); transition: all 0.5s; -moz-transition: all 0.5s; -webkit-transition: all 0.5s;}
+header #search_container form.selected{top: 80px;}
+header #search_container form ~ #requestOpen{visibility: hidden; opacity: 0; transition: opacity 0.5s, visibility 0s 0.5s; -moz-transition: opacity 0.5s, visibility 0s 0.5s; -webkit-transition: opacity 0.5s, visibility 0s 0.5s;}
+header #search_container form.selected ~ #requestOpen{visibility: visible; opacity: 1; transition: opacity 0.5s 0.5s; -moz-transition: opacity 0.5s 0.5s; -webkit-transition: opacity 0.5s 0.5s;}
+header #search_container .search_placeholder{height: 47px;}
+header #search_container .alerts .alert{display: none;}
 footer{padding: 30px 0; background: #34495e; color: #ecf0f1; border-top: 2px solid #2c3e50; border-bottom: 2px solid #2c3e50;}
 
 /* CONTENT */
-.item_list{margin: 30px 0;}
-.item{width: 250px; height: 250px; display: inline-block; border: 5px solid #fff; position: relative; overflow: hidden; cursor: pointer; margin: 5px;}
-.item .min{width: 100%;}
-.item .hover{background: transparent; color: #ecf0f1; position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: background 0.5s; -moz-transition: background 0.5s; -webkit-transition: background 0.3s;}
+.alerts{margin: 30px auto;}
+.request{display: block; border: 2px solid #ecf0f1; margin: 10px 0;}
+.request .content{border-top: 2px solid #ecf0f1; border-bottom: 2px solid #ecf0f1;}
+.request .user, .request .content, .request .buttons{padding: 10px;}
+
+/* ITEMS */
+.item_list{margin: 30px 0; position: relative;}
+.item_container{display: inline-block; margin: 5px; position: relative; transition: margin-top 0.5s; -moz-transition: margin-top 0.5s; -webkit-transition: margin-top 0.5s;}
+.item_container .item{width: 250px; height: 250px; position: relative; border: 5px solid #fff; overflow: hidden; cursor: pointer;}
+.item_container .min{width: 100%; z-index: 100; pointer-events: none;}
+.item .hover{z-index: 999; background: transparent; color: #ecf0f1; position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: background 0.5s; -moz-transition: background 0.5s; -webkit-transition: background 0.3s;}
 .item .hover .details{position: absolute; top: 100%; left: 0; width: 100%; height: 100%; overflow: hidden; opacity: 0.5; padding: 10px; transition: all 0.8s; -moz-transition: all 0.8s; -webkit-transition: all 0.8s;}
 .item .hover .details h3{margin: 0;}
 .item .hover .details .text{height: 100%; margin-bottom: -20px; padding-bottom: 30px;}
 .item .hover .details .text .inner{max-height: 100%; overflow: hidden;}
-
 .item .hover:hover{background: rgba(41, 128, 185, 0.8);}
 .item .hover:hover .details{top: 0; opacity: 1;}
+.item_container button{margin: 5px 0;}
+
+.item_container:before{content: ''; display: inline-block; width: 0; height: 0; background: #34495e; position: absolute; top: -35px; left: 50%; transition: none; -moz-transition: none; -webkit-transition: none; transform: translateX(-50%) rotate(45deg); -moz-transform: translateX(-50%) rotate(45deg); -webkit-transform: translateX(-50%) rotate(45deg); -ms-transform: translateX(-50%) rotate(45deg);}
+.item_container.active{margin-top: 330px;}
+.item_container.active:before{width: 30px; height: 30px; transition: all 0.5s; -moz-transition: all 0.5s; -webkit-transition: all 0.5s;}
+.item_container .full_info{visibility: hidden; overflow: hidden; position: absolute; text-align: left; bottom: 270px; left: 0; width: 100%; height: 0; background: #34495e; color: #ecf0f1; transition: height 0.5s, visibility 0s 0.5s; -moz-transition: height 0.5s, visibility 0s 0.5s; -webkit-transition: height 0.5s, visibility 0s 0.5s;}
+.item_container.active .full_info{visibility: visible; height: 290px; transition: height 0.5s; -moz-transition: height 0.5s; -webkit-transition: height 0.5s;}
+.item_container .full_info .inner{padding: 20px;}
+.item_container .full_info h3{margin-top: 0;}
+.item_container .full_info .text{overflow: hidden; width: auto; padding-right: 20px;}
+.item_container .full_info .img{float: right; width: 250px; height: 250px; overflow: hidden;}
 
 /* MODALS */
-.modal{background: url('../img/bg-header.jpg') no-repeat center / cover; background-attachment: fixed;}
+.modal{background: url('../img/bg-header.jpg') no-repeat center / cover; background-attachment: fixed; color: #ecf0f1;}
 .modal form{margin: 20px auto;}
 .close_button{cursor: pointer; margin: 20px; transition: all 0.3s; -moz-transition: all 0.3s; -webkit-transition: all 0.3s;}
 .close_button:hover{transform: rotate(180deg); -moz-transform: rotate(180deg); -webkit-transform: rotate(180deg); -ms-transform: rotate(180deg);}
-.modal .alerts{width: 100%; max-width: 350px; margin: 30px auto;}
+.modal .alerts{width: 100%; max-width: 350px;}
 .modal form{width: 100%; max-width: 350px; margin: 30px auto;}
 #searchModal form{margin: 10px auto;}
 

@@ -1,6 +1,6 @@
 <?php
-	if (isset($_POST['submit'])){
-		require_once("../config.php");
+	require_once("../config.php");
+	if (isset($_POST['submit']) && !LOGGED_IN){
 		if (!empty($_POST['login']) && !empty($_POST['password']) && !empty($_POST['password2'])){
 			if (!validUsername($_POST['login'])) exit(json_encode(array("state" => 2)));
 			if (!validPassword($_POST['password'])) exit(json_encode(array("state" => 3)));

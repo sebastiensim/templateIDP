@@ -1,8 +1,13 @@
 $(document).ready(function(){
 	getItems();
 	
-	$('.item').click(function(e){
+	$('body').on('click', '.item', function(e){
 		e.preventDefault();
+		showDetails($(this));
+	});
+	
+	$('a[data-toggle="tab"]').on('hide.bs.tab', function(e){
+		$($(e.target).attr('href')).find('.item_container.active').removeClass('active');
 	});
 	
 	/* LOGIN/REGISTER MODALS */
@@ -21,16 +26,18 @@ $(document).ready(function(){
 	/* LOGIN/REGISTER MODALS */
 	
 	/* SEARCHBOX HANDLERS */
-		$('#searchOpen').animatedModal({modalTarget: 'searchModal', animatedIn: 'bounceIn'});
-		$('#searchModal form input').on('input', function(){searchItems($(this).parents('form').serialize());});
-		$('#searchModal form').submit(function(e){e.preventDefault();});
+		$('#search_container form input').on('input', function(){searchItems($(this).parents('form').serialize());});
+		$('#search_container form').submit(function(e){e.preventDefault(); searchItems($(this).parents('form').serialize());});
 	/* SEARCHBOX HANDLERS */
 });
 
 function searchItems(q){
-	var container = $('#searchModal .item_list');
-	var alerts = $('#searchModal .alerts');
+	var form = $('#search_container form');
+	var container = $('#search_container .item_list');
+	var alerts = $('#search_container .alerts');
+	container.find('.item_container').removeClass('active');
 	if (q != 'q='){
+		form.addClass('selected');
 		$.post('api/searchItems.php', q, function(data){
 			container.empty();
 			alerts.empty();
@@ -39,15 +46,16 @@ function searchItems(q){
 					$(templateItem(v)).appendTo(container).hide().fadeIn(500).css("display", "inline-block");
 				});
 			} else {
-				alerts.append(templateAlert("<b>We are sorry but nothing was found.</b>", "info"));
+				$(templateAlert("<b>We are sorry but nothing was found.</b>", "info")).appendTo(alerts).fadeIn(500);
 			}
 		}, "json").fail(function(){
 			container.empty();
-			alerts.append(templateAlert("<b>There was an error</b>, please try again.", "danger"));
+			$(templateAlert("<b>There was an error</b>, please try again.", "danger")).appendTo(alerts).fadeIn(500);
 		});
 	} else {
 		container.empty();
 		alerts.empty();
+		form.removeClass('selected');
 	}
 }
 
@@ -61,6 +69,13 @@ function getItems(){
 		});
 		$('[data-cid] .item_list:empty').append(templateAlert("<b>No items to show in this category</b>", "info"));
 	}, "json");
+}
+
+function showDetails(item){
+	var item = item.closest('.item_container');
+	item.find('.full_info').width(item.closest('.item_list').width()).css({'left': -item.position().left});
+	item.siblings('.active').removeClass('active');
+	item.toggleClass('active');
 }
 
 function login(q){
