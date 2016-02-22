@@ -12,7 +12,7 @@
 	define('CUR_DIR', realpath(dirname(__FILE__)));
 
 	try {
-		$db = new PDO('mysql:host=' . $conf['dbhost'] . ';dbname=' . $conf['dbname'], $conf['dbuser'], $conf['dbpass']);
+		$db = new PDO('mysql:host=us-cdbr-iron-east-03.cleardb.net'';dbname=heroku_8454500b6fe7b6a', 'bc2011e822a0fa', 'ee3e2601');
 	} catch (PDOException $e){
 		echo "Error connecting to database:" . $e;
 	};
