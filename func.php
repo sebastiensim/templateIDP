@@ -26,6 +26,26 @@
 //         $m->addServer($parts[0], $parts[1]);
 //     }
 // }
+
+require 'vendor/autoload.php';
+use MemCachier\MemcacheSASL;
+
+// Create client
+$m = new MemcacheSASL();
+$servers = explode(",", getenv("MEMCACHIER_SERVERS"));
+foreach ($servers as $s) {
+    $parts = explode(":", $s);
+    $m->addServer($parts[0], $parts[1]);
+}
+
+// Setup authentication
+$m->setSaslAuthData( getenv("MEMCACHIER_USERNAME")
+                   , getenv("MEMCACHIER_PASSWORD") );
+
+// Test client
+$m->add("foo", "bar");
+echo $m->get("foo");
+
 	function validUsername($username){
 		if (strlen($username) < 3 || strlen($username) > 15)
 			return false;
