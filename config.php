@@ -18,4 +18,5 @@
 	};
 	
 	$user = checkLogin();
+	error_reporting(E_ALL)
 ?>
