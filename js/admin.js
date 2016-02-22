@@ -24,7 +24,7 @@ $(document).ready(function(){
 			e.preventDefault();
 			addItem($(this));
 		});
-		$('body').on('click', '.item [data-act="del"]', function(e){e.preventDefault(); deleteItem($(this));});
+		$('body').on('click', '[data-act="del"]', function(e){e.preventDefault(); deleteItem($(this));});
 	/* ITEM ADMINISTRATION HANDLERS */
 	
 	/* SEARCHBOX HANDLERS */
@@ -133,6 +133,7 @@ function addItem(elem){
 }
 
 function deleteItem(elem){
+	console.log(elem);
 	var parent = elem.parents('.item_container');
 	$.post('api/admin/deleteItem.php', {id: parent.data('itemid')}, function(data){
 		if (data.state == 0){
