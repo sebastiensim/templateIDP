@@ -12,7 +12,11 @@
 	define('CUR_DIR', realpath(dirname(__FILE__)));
 
 	try {
+<<<<<<< HEAD
 		$db = new PDO('mysql:host=us-cdbr-iron-east-03.cleardb.net'';dbname=heroku_8454500b6fe7b6a', 'bc2011e822a0fa', 'ee3e2601');
+=======
+		$db = new PDO('mysql:host=us-cdbr-iron-east-03.cleardb.net;dbname=heroku_8454500b6fe7b6a', $conf['dbuser'], $conf['dbpass']);
+>>>>>>> gh-pages
 	} catch (PDOException $e){
 		echo "Error connecting to database:" . $e;
 	};
