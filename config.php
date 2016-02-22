@@ -1,6 +1,6 @@
 <?php
-	session_start();
 	require_once("func.php");
+	session_start();
 	
 	$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
