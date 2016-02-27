@@ -24,6 +24,7 @@
 </script>
 </head>
 <body>
+	<?php include_once("analyticstracking.php") ?>
 	<header class="text-center">
 		<div class="jumbotron">
 			<div class="container">
