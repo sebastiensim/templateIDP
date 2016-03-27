@@ -2,16 +2,16 @@
 	require_once("../../config.php");
 	if (isset($_POST['submit']) && LOGGED_IN && checkAdmin($user)){
 		if (!empty($_POST['title']) && !empty($_POST['author']) && !empty($_POST['description']) && isset($_POST['cost']) && isset($_POST['category']) && !empty($_POST['tags'])){
-			$cost = intval($_POST['cost']);
+			$cost = floatval($_POST['cost']);
 			if ($cost >= 0 && $cost <= 999.99){
 				$cat = intval($_POST['category']);
 				if ($cat >= 1 && $cat <= 3){
 					$file_name = uploadFile($_FILES['min']);
-					$stmt = $db->prepare("INSERT INTO `items` VALUES (NULL,?,?,?,?,?,?,?)");
+					$stmt = $db->prepare("INSERT INTO `items`(`Title`, `Description`, `Author`, `Image`, `Cost`, `Category`, `Tags`) VALUES (?,?,?,?,?,?,?)");
 					$stmt->execute(array($_POST['title'], $_POST['description'], $_POST['author'], $file_name, $cost, $cat, $_POST['tags']));
 					$id = $db->lastInsertId();
 					if ($stmt->rowCount() > 0){
-						exit(json_encode(array("state" => $id, "filename" => $file_name)));
+						exit(json_encode(array("state" => $id, "filename" => $file_name, "add_date" => time())));
 					}
 					else{
 						exit(json_encode(array("state" => -8)));

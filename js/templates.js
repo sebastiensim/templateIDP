@@ -29,9 +29,11 @@ function templateItem(d, a){
 										<h3>` + d.Title + `</h3>
 										<p>` + d.Description + `</p>
 										<p>Author: <b>` + d.Author + `</b></p>
+										<p>Added on: <b>` + d.Add_Date + `</b></p>
+										<p>Downloads: <b>` + d.Purhases + `</b></p>
 										<p>Price: <b>$` + parseFloat(d.Cost).toFixed(2) + `</b></p>
 										<div>
-										<button class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span> Buy Now</button>
+										<button class="btn btn-success" data-act="buy"><span class="glyphicon glyphicon-shopping-cart"></span> Buy Now</button>
 										` + inject + `
 										</div>
 									</div>
@@ -47,8 +49,9 @@ function templateAlert(str, type){
 
 function templateRequest(d){
 	return $.parseHTML(`<div class="request" data-reqid="` + d.Id + `">
-							<div class="user">` + d.Username + `(` + d.Uid + `)</div>
-							<div class="content">` + d.Request + `</div>
+							<div class="user">` + d.Username + `(` + d.Uid + `) - ` + d.Budget + `$</div>
+							<div class="deadline">Deadline: ` + d.Deadline + `</div>
+							<div class="content">` + d.Details + `</div>
 							<div class="buttons">
 								<button class="btn btn-success" data-act="accept"><span class="glyphicon glyphicon-ok"></span> Accept</button>
 								<button class="btn btn-danger" data-act="decline"><span class="glyphicon glyphicon-remove"></span> Decline</button>

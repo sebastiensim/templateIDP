@@ -3,25 +3,33 @@ body{background: #ecf0f1; overflow-y: scroll;}
 .hidden_content{display: none;}
 
 /* HEADER / FOOTER */
-header{background: url('../img/bg-header.jpg') no-repeat center / cover; min-height: 100vh; color: #ecf0f1; position: relative;}
+header{background: url('../img/templatebg.png') no-repeat center / cover; min-height: 100vh; color: #ecf0f1; position: relative;}
 header .jumbotron{background: none; padding: 0; margin: 0;}
 header .jumbotron p{font-size: inherit;}
 header .jumbotron a{color: inherit;}
 header .top_right{position: absolute; top: 10px; right: 10px;}
-header #search_container form, header #search_container .alerts{width: 100%; max-width: 350px;}
-header #search_container form{position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); -moz-transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); transition: all 0.5s; -moz-transition: all 0.5s; -webkit-transition: all 0.5s;}
-header #search_container form.selected{top: 80px;}
-header #search_container form ~ #requestOpen{visibility: hidden; opacity: 0; transition: opacity 0.5s, visibility 0s 0.5s; -moz-transition: opacity 0.5s, visibility 0s 0.5s; -webkit-transition: opacity 0.5s, visibility 0s 0.5s;}
-header #search_container form.selected ~ #requestOpen{visibility: visible; opacity: 1; transition: opacity 0.5s 0.5s; -moz-transition: opacity 0.5s 0.5s; -webkit-transition: opacity 0.5s 0.5s;}
-header #search_container .search_placeholder{height: 47px;}
+header .top_left{position: absolute; top: 10px; left: 20px;}
+header #search_container form{width: 100%; max-width: 350px; margin: auto;}
+header #search_container form select{margin: 5px auto 0 auto;}
+header #search_container .form_container{position: absolute; top: 50%; left: 50%; width: 100%; max-width: 1170px; transform: translate(-50%,-50%); -moz-transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%); transition: all 0.5s; -moz-transition: all 0.5s; -webkit-transition: all 0.5s;}
+header #search_container .form_container.selected{top: 60px; transform: translate(-50%,0); -moz-transform: translate(-50%,0); -webkit-transform: translate(-50%,0); -ms-transform: translate(-50%,0);}
+header #search_container .form_container .last_searches{margin-bottom: 10px;}
+header #search_container .form_container .last_searches button{margin: 8px;}
+header #search_container .form_container ~ #requestOpen{display: block; margin-top: -15px; margin-bottom: 30px; visibility: hidden; opacity: 0; transition: opacity 0.5s, visibility 0s 0.5s; -moz-transition: opacity 0.5s, visibility 0s 0.5s; -webkit-transition: opacity 0.5s, visibility 0s 0.5s;}
+header #search_container .form_container.selected ~ #requestOpen{visibility: visible; opacity: 1; transition: opacity 0.5s 0.5s; -moz-transition: opacity 0.5s 0.5s; -webkit-transition: opacity 0.5s 0.5s;}
+header #search_container .search_placeholder{height: 130px;}
+header #search_container .item_list{margin-top: 0;}
+header #search_container .alerts{width: 100%; margin: auto;}
 header #search_container .alerts .alert{display: none;}
+header #search_container .alerts .item_list{margin: 0 auto;}
 footer{padding: 30px 0; background: #34495e; color: #ecf0f1; border-top: 2px solid #2c3e50; border-bottom: 2px solid #2c3e50;}
 
 /* CONTENT */
 .alerts{margin: 30px auto;}
 .request{display: block; border: 2px solid #ecf0f1; margin: 10px 0;}
+.request .deadline{border-top: 2px solid #ecf0f1;}
 .request .content{border-top: 2px solid #ecf0f1; border-bottom: 2px solid #ecf0f1;}
-.request .user, .request .content, .request .buttons{padding: 10px;}
+.request .user, .request .deadline, .request .content, .request .buttons{padding: 10px;}
 
 /* ITEMS */
 .item_list{margin: 30px 0; position: relative;}
@@ -40,7 +48,7 @@ footer{padding: 30px 0; background: #34495e; color: #ecf0f1; border-top: 2px sol
 .item_container:before{content: ''; display: inline-block; width: 0; height: 0; background: #34495e; position: absolute; top: -35px; left: 50%; transition: none; -moz-transition: none; -webkit-transition: none; transform: translateX(-50%) rotate(45deg); -moz-transform: translateX(-50%) rotate(45deg); -webkit-transform: translateX(-50%) rotate(45deg); -ms-transform: translateX(-50%) rotate(45deg);}
 .item_container.active{margin-top: 330px;}
 .item_container.active:before{width: 30px; height: 30px; transition: all 0.5s; -moz-transition: all 0.5s; -webkit-transition: all 0.5s;}
-.item_container .full_info{visibility: hidden; overflow: hidden; position: absolute; text-align: left; bottom: 270px; left: 0; width: 100%; height: 0; background: #34495e; color: #ecf0f1; transition: height 0.5s, visibility 0s 0.5s; -moz-transition: height 0.5s, visibility 0s 0.5s; -webkit-transition: height 0.5s, visibility 0s 0.5s;}
+.item_container .full_info{visibility: hidden; overflow: hidden; position: absolute; text-align: left; bottom: 270px; margin-left: -5px; left: 0; width: 100%; height: 0; background: #34495e; color: #ecf0f1; transition: height 0.5s, visibility 0s 0.5s; -moz-transition: height 0.5s, visibility 0s 0.5s; -webkit-transition: height 0.5s, visibility 0s 0.5s;}
 .item_container.active .full_info{visibility: visible; height: 290px; transition: height 0.5s; -moz-transition: height 0.5s; -webkit-transition: height 0.5s;}
 .item_container .full_info .inner{padding: 20px;}
 .item_container .full_info h3{margin-top: 0;}
@@ -48,7 +56,7 @@ footer{padding: 30px 0; background: #34495e; color: #ecf0f1; border-top: 2px sol
 .item_container .full_info .img{float: right; width: 250px; height: 250px; overflow: hidden;}
 
 /* MODALS */
-.modal{background: url('../img/bg-header.jpg') no-repeat center / cover; background-attachment: fixed; color: #ecf0f1;}
+.modal{background: url('../img/templatebg.png') no-repeat center / cover; background-attachment: fixed; color: #ecf0f1;}
 .modal form{margin: 20px auto;}
 .close_button{cursor: pointer; margin: 20px; transition: all 0.3s; -moz-transition: all 0.3s; -webkit-transition: all 0.3s;}
 .close_button:hover{transform: rotate(180deg); -moz-transform: rotate(180deg); -webkit-transform: rotate(180deg); -ms-transform: rotate(180deg);}
